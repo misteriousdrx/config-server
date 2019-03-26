@@ -1,0 +1,53 @@
+---
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active:
+    - default
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/misteriousdrx/spring-config-server
+#          username: misteriousdrx
+#          password: #Paulo$3133
+          searchPaths: '{application}'
+          force-pull: true
+          defaultLabel: development
+          skipSslValidation: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${random.int}
+
+    
+management:
+  endpoints:
+    web.exposure.include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+#    healthcheck:
+#      enabled: true
+#  instance:
+#    statusPageUrlPath: ${server.servletPath}/info
+#    healthCheckUrlPath: ${server.servletPath}/health
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#    register-with-eureka: true
+#    fetch-registry: true
+#  instance:
+#    instance-id: ${spring.application.name}:${random.int}
