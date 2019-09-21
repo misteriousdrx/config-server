@@ -12,28 +12,33 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/misteriousdrx/spring-config-server
-#          username: misteriousdrx
-#          password: #Paulo$3133
+          uri: https://github.com/misteriousdrx/spring-config-repo
           searchPaths: '{application}'
           force-pull: true
           defaultLabel: development
           skipSslValidation: true
+        encrypt:
+          enabled: false
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8061/eureka/
-  instance:
-    instance-id: ${spring.application.name}:${random.int}
 
-    
+
 management:
   endpoints:
     web.exposure.include: "*"
   endpoint:
     health:
       show-details: ALWAYS
+
+
+
+
+    #eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8061/eureka/
+#  instance:
+#    instance-id: ${spring.application.name}:${random.int}
+
 #eureka:
 #  client:
 #    serviceUrl:
